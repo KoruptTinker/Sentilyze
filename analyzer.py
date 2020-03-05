@@ -11,7 +11,7 @@ def analyzer():
 
 
     negative_list=[]
-    with open("./data/dnegative.txt", "r") as f:
+    with open("./data/dnegative.txt", "r",encoding="ISO-8859-1") as f:
         for line in f:
             negative_list.append((line))
 
@@ -134,8 +134,6 @@ def analyzer():
             cp+=1
         else:
             wp+=1
-    accuracy=(cp/(cp+wp))*100 
-    print('Accuracy of model is '+str(accuracy))
         
 
 

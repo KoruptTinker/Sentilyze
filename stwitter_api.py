@@ -1,5 +1,5 @@
-#API support for Sentilyzer.
-#@author: Brijesh Kumar
+'''API support for Sentilyzer.
+@author: Brijesh Kumar'''
 import tweepy
 import csv
 import re
@@ -19,10 +19,10 @@ resultF=0
 #Function for API Connection.
 def getAPIConnection():
     #Twitter authorization keys. (DO NOT EDIT THIS CODE)
-    consumer_key= "****"
-    consumer_secret= "*****"
-    access_token= "*****"
-    access_token_secret="******"
+    consumer_key= 'QvWyxQ2KymChGoRa0aJOqxrXi'
+    consumer_secret='WQHhC3zEcew7VSrcP0a4rX2iiexE84bXAavxDNQbCyAwotFeY2'
+    access_token= '805688951713517572-WanXOPfckOKD4gsvZMeuwBQ58Ne8jdJ'
+    access_token_secret='1IlfsRyYBAaxKknWaZvsP0Ny4CLnMGXQ84ydvj4SIJX2o'
     #API Connection
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
@@ -45,7 +45,6 @@ def storeDB():
         flag="True"
         myc.execute("INSERT INTO results (result,flag) VALUES (%s, %s)", (resultF, flag))
         db.commit()
-        print(resultF)
 
 #Function to generate list containing tweets.
 def getList():
@@ -58,7 +57,7 @@ def getList():
 def getCSV():
         global tweets
         global f
-        with open("M:\Project\dtweets.csv",'w+') as f:
+        with open("./data/dtweets.csv",'w+') as f:
                 twriter=csv.writer(f)
                 twriter.writerow("l")
                 twriter.writerows([[item] for item in tweets])
@@ -67,7 +66,7 @@ def getCSV():
 def getAnalysis():
         global resultF
         positivity=0
-        with open("M:\Project\danalysis.csv") as f:
+        with open("./data/danalysis.csv") as f:
                 analysisR=csv.reader(f)
                 analysisList=[e[0].strip().split(",") for e in analysisR if e]
         for i in (analysisList):
@@ -105,9 +104,9 @@ def fetchTweetsByHash():
     global f
     f.close()
     an.analyzer()
-    #os.remove("M:\Project\dtweets.csv")
+    os.remove("./data/dtweets.csv")
     getAnalysis()
-    #os.remove("M:\Project\danalysis.csv")
+    os.remove("./data/danalysis.csv")
     storeDB()
 
 #Function to fetch tweets using Twitter Handle of the User
@@ -131,13 +130,12 @@ def fetchTweetsByUser():
             utfRemoval= hashRemoval.encode('ascii', 'ignore').decode('ascii')
             result=re.sub(r"@\S+","",utfRemoval)
             print("--------")
-            #print(result)
             getList()
             count+=1
         getCSV()  
         f.close()
         an.analyzer()
-        os.remove("M:\Project\dtweets.csv")
+        os.remove("./data/dtweets.csv")
         getAnalysis()
-        os.remove("M:\Project\danalysis.csv")
+        os.remove("./data/danalysis.csv")
         storeDB()

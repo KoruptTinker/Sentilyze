@@ -3,9 +3,9 @@ A machine learning based approach towards social media analysis using natural la
 
 # Installation
 Use the package manager using the requirements.txt provided.
-'''bash 
+```bash 
 pip install -r {path to requirements.txt}
-'''
+```
 
 # Usage
 The program provides a basic GUI right now (Java required). The files have been provided for the same. 
