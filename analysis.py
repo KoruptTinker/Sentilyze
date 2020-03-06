@@ -19,10 +19,10 @@ resultF=0
 #Function for API Connection.
 def getAPIConnection():
     #Twitter authorization keys. (DO NOT EDIT THIS CODE)
-    consumer_key= 'QvWyxQ2KymChGoRa0aJOqxrXi'
-    consumer_secret='WQHhC3zEcew7VSrcP0a4rX2iiexE84bXAavxDNQbCyAwotFeY2'
-    access_token= '805688951713517572-WanXOPfckOKD4gsvZMeuwBQ58Ne8jdJ'
-    access_token_secret='1IlfsRyYBAaxKknWaZvsP0Ny4CLnMGXQ84ydvj4SIJX2o'
+    consumer_key= ''
+    consumer_secret=''
+    access_token= ''
+    access_token_secret=''
     #API Connection
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
