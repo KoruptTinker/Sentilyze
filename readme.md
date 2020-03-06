@@ -14,8 +14,8 @@ API :-
 1) Copy all the files presented. Get your API keys from [Twitter Developer](https://developer.twitter.com/)
 2) Put in the keys at the appropriate places in the file analysis.py
 3) Run 'api.py'
-4) For username search ```bash curl 127.0.0.1:5000/searchByUser?id={put in the twitter handle here} ```
-   For topic/hashtag search ```bash curl 127.0.0.1:5000/searchByHash?id={put in the hashtag excluding #}```
+4) For username search ```curl 127.0.0.1:5000/searchByUser?id={put in the twitter handle here} ```
+   For topic/hashtag search ```curl 127.0.0.1:5000/searchByHash?id={put in the hashtag excluding #}```
 5) Obtain json. 
 
 ## Contributing
