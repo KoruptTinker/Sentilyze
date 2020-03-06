@@ -22,10 +22,6 @@ def getDBConnection():
 def getHash():
     getDBConnection()
     global searchQ
-    temp=searchQ
-    for i in temp:
-        if(temp.index(i)==0):
-            searchQ=i
     print(searchQ)
     searchQ="#"+searchQ
     searchQ=searchQ +" -filter:retweets"
@@ -36,8 +32,4 @@ def getHash():
 def getUser():
     global searchQ
     getDBConnection()
-    temp=searchQ
-    for i in temp:
-        if(temp.index(i)==0):
-            searchQ=i
     return searchQ

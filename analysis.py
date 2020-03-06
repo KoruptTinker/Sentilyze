@@ -30,22 +30,6 @@ def getAPIConnection():
     api= tweepy.API(auth)
     # AUTH end
 
-def storeDB():
-        global db
-        global myc
-        global resultF
-        db=mysql.connector.connect(
-        host="localhost",
-        port=3306,
-        user="root",
-        password="password",
-        database="sentilyzer"
-    )
-        myc=db.cursor()
-        flag="True"
-        myc.execute("INSERT INTO results (result,flag) VALUES (%s, %s)", (resultF, flag))
-        db.commit()
-
 #Function to generate list containing tweets.
 def getList():
         global tweets
@@ -75,13 +59,14 @@ def getAnalysis():
         positivityPercent= (positivity/(len(analysisList)-1))*100
         print("Positivity Percentage : "+str('{0:.2f}'.format(positivityPercent))+" %")
         resultF=int(positivityPercent)
+        return resultF
 
 #Function to fetch tweets from hashtag.
-def fetchTweetsByHash():
+def fetchTweetsByHash(hash):
     maxTweets=100
     getAPIConnection() #Requesting API Connection.
     global api
-    searchQuery=QF.getHash()
+    searchQuery=hash
     langPref="en"
     count=0
     global result
@@ -105,17 +90,17 @@ def fetchTweetsByHash():
     f.close()
     an.analyzer()
     os.remove("./data/dtweets.csv")
-    getAnalysis()
+    res=getAnalysis()
     os.remove("./data/danalysis.csv")
-    storeDB()
+    return res
 
 #Function to fetch tweets using Twitter Handle of the User
-def fetchTweetsByUser():
+def fetchTweetsByUser(userName):
         global f
         getAPIConnection()
         max_tweets=100
         count=0
-        userID=QF.getUser()
+        userID=userName
         global result
         userTimeline=api.user_timeline(userID)
         for tweet in userTimeline:
@@ -136,6 +121,6 @@ def fetchTweetsByUser():
         f.close()
         an.analyzer()
         os.remove("./data/dtweets.csv")
-        getAnalysis()
+        res=getAnalysis()
         os.remove("./data/danalysis.csv")
-        storeDB()
+        return res
