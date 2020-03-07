@@ -17,6 +17,7 @@ API :-
 4) For username search ```curl 127.0.0.1:5000/searchByUser?id={put in the twitter handle here} ```
    For topic/hashtag search ```curl 127.0.0.1:5000/searchByHash?id={put in the hashtag excluding #}```
 5) Obtain json. 
+6) Can be hosted to accept HTTP traffic by putting the IP = '0.0.0.0' and port = 80
 
 ## Contributing
 Pull requests are welcome. Kindly open an issue beforehand so we can discuss the same.
